@@ -1,1 +1,116 @@
-adhdhjdhdhfjfh
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "wOAnimator",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Troll Dropping Tower😼",
+   LoadingSubtitle = "by wAnimator",
+   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "wOAnimator Key System",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"WOFEGUI"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+Rayfield:Notify({
+   Title = "Thx for using!",
+   Content = "Support me on scriptblox",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+
+local Tab = Window:CreateTab("Auto-Farm", 4483362458) -- 
+local Section = Tab:CreateSection("Most Op Script")
+local Button = Tab:CreateButton({
+   Name = "Farm Slaps(Need Default Glove equiped)",
+   Callback = function()
+   while task.wait() do
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    -- Temel parçaları al (beklemesi güvenli)
+    local humanoid = character:WaitForChild("Humanoid")
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    -- --- DONDUR ---
+    -- Karakterin hareketini tamamen durdur
+    root.Anchored = true
+    humanoid.PlatformStand = true
+    humanoid.WalkSpeed = 0
+    humanoid.JumpPower = 0
+
+    -- Olayı tetikle
+    local args = {
+        "slash",
+        character,
+        Vector3.new(4.638762950897217, 6.959672305129061e-08, -8.858999252319336)
+    }
+    -- DefaultSlap Event'ini gönder
+    character:WaitForChild("DefaultSlap"):WaitForChild("Event"):FireServer(unpack(args))
+
+    -- --- (İSTEĞE BAĞLI) ÇÖZME ---
+    -- 3 saniye sonra çöz. Sonsuz dondurma istersen bu bloğu kaldır.
+    task.delay(999999999999999999999999, function()
+        -- parça hâlâ varsa eski haline getir
+        if root and root.Parent then
+            root.Anchored = false
+        end
+        if humanoid and humanoid.Parent then
+            humanoid.PlatformStand = false
+            humanoid.WalkSpeed = 16      -- varsayılan yürüyüş hızı (gerektiğinde değiştir)
+            humanoid.JumpPower = 50     -- varsayılan zıplama gücü (gerektiğinde değiştir)
+        end
+    end)
+end
+  
+   end,
+})
+local Tab = Window:CreateTab("Credits", 4483362458) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "See Credits(Click me)",
+   Callback = function()
+   Rayfield:Notify({
+   Title = "owner:wOAnimator@wOmeRz",
+   Content = "Notification Content",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "see Second credit",
+   Callback = function()
+   Rayfield:Notify({
+   Title = "tester:inc0mu2sback1",
+   Content = "Notification Content",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+   end,
+})
